@@ -1,5 +1,6 @@
 @startuml
 
+title "Class-Diagram"
 ' Define the classes
 class Customer {
     - customerID: String

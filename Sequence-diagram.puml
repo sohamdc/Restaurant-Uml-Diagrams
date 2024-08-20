@@ -1,0 +1,33 @@
+@startuml
+
+actor Customer
+participant "Order" as Order
+participant "MenuItem" as MenuItem
+participant "Reservation" as Reservation
+participant "Table" as Table
+participant "KitchenStaff" as KitchenStaff
+participant "Inventory" as Inventory
+participant "Cashier" as Cashier
+participant "Receipt" as Receipt
+participant "Manager" as Manager
+participant "Operations" as Operations
+participant "Report" as Report
+
+Customer -> Order: placeOrder()
+Order -> MenuItem: addMenuItem()
+Customer -> Reservation: makeReservation()
+Reservation -> Table: assignTable()
+
+Order -> KitchenStaff: processOrder()
+KitchenStaff -> Inventory: updateInventory()
+KitchenStaff -> Order: prepareFood()
+
+Customer -> Cashier: makePayment()
+Cashier -> Order: processPayment()
+Cashier -> Receipt: generateReceipt()
+
+Manager -> Inventory: manageInventory()
+Manager -> Report: generateReports()
+Manager -> Operations: overseeOperations()
+
+@enduml

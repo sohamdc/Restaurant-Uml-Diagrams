@@ -1,0 +1,54 @@
+@startuml
+
+start
+
+:Customer views Menu;
+
+if (Place Order?) then (yes)
+    :Customer places Order;
+    
+    fork
+        :Order adds MenuItem;
+    fork again
+        if (Make Reservation?) then (yes)
+            :Reservation made by Customer;
+            :Assign Table for Reservation;
+        else (no)
+            :Skip Reservation;
+        endif
+    end fork
+    
+    :Order sent to Kitchen Staff;
+    
+    fork
+        :Kitchen Staff prepares Food;
+    fork again
+        if (Update Inventory?) then (yes)
+            :Kitchen Staff updates Inventory;
+        else (no)
+            :Skip Inventory Update;
+        endif
+    end fork
+    
+    if (Customer makes Payment?) then (yes)
+        :Customer makes Payment;
+        :Cashier processes Payment;
+        :Cashier generates Receipt;
+    else (no)
+        :Cancel Order;
+    endif
+else (no)
+    :Customer leaves;
+endif
+
+if (Manager Action Required?) then (yes)
+    :Manager manages Inventory;
+    :Manager generates Reports;
+    :Manager oversees Operations;
+else (no)
+    :Manager monitors Operations;
+endif
+
+stop
+
+@enduml

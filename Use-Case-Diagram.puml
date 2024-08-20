@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+actor Customer
+actor Waiter
+actor KitchenStaff
+actor Cashier
+actor Manager
+
+Customer --> (Place Order)
+Customer --> (View Menu)
+Customer --> (Make Payment)
+Customer --> (Make Reservation)
+
+Waiter --> (Take Order)
+Waiter --> (Serve Order)
+Waiter --> (Manage Reservations)
+
+KitchenStaff --> (Prepare Food)
+KitchenStaff --> (Update Inventory)
+
+Cashier --> (Process Payment)
+Cashier --> (Generate Receipt)
+
+Manager --> (Manage Inventory)
+Manager --> (Generate Reports)
+Manager --> (Oversee Operations)
+
+(Place Order) --> (Add Menu Item) : involves
+(Place Order) --> (Update Order Status) : updates
+(Prepare Food) --> (Order) : processes
+(Manage Reservations) --> (Table Assignment) : handles
+@enduml

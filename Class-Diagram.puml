@@ -1,0 +1,101 @@
+@startuml
+
+' Define the classes
+class Customer {
+    - customerID: String
+    - name: String
+    - contactInfo: String
+    + placeOrder()
+    + viewMenu()
+    + makePayment()
+    + makeReservation()
+}
+
+class Order {
+    - orderID: String
+    - orderStatus: String
+    - items: List<MenuItem>
+    + addMenuItem()
+    + updateOrderStatus()
+}
+
+class MenuItem {
+    - itemID: String
+    - name: String
+    - price: Decimal
+    - description: String
+}
+
+class Reservation {
+    - reservationID: String
+    - tableNumber: Integer
+    - reservationTime: Date
+    + assignTable()
+}
+
+class Table {
+    - tableNumber: Integer
+    - seats: Integer
+    - status: String
+}
+
+class KitchenStaff {
+    - staffID: String
+    - name: String
+    + prepareFood()
+    + updateInventory()
+}
+
+class Inventory {
+    - inventoryID: String
+    - items: List<MenuItem>
+    - quantity: Integer
+    + updateInventory()
+}
+
+class Cashier {
+    - cashierID: String
+    - name: String
+    + processPayment()
+    + generateReceipt()
+}
+
+class Receipt {
+    - receiptID: String
+    - amount: Decimal
+    - date: Date
+    + generateReceipt()
+}
+
+class Manager {
+    - managerID: String
+    - name: String
+    + manageInventory()
+    + generateReports()
+    + overseeOperations()
+}
+
+class Operations{
+-OperationId:int
++viewOperations()
+}
+
+class Report{
+-ReportId:int
++viewReports()
+}
+
+
+' Relationships
+Customer "1" --> "0..*" Order : places
+Order "1" --> "0..*" MenuItem : contains
+Order "1" --> "0..1" Reservation : includes
+Reservation "1" --> "1" Table : assigns
+KitchenStaff "1" --> "0..1" Inventory : manages
+KitchenStaff "1" --> "0..*" Order : processes
+Cashier "1" --> "0..1" Receipt : generates
+Cashier "1" --> "0..*" Order : processes
+Manager "1" --> "1" Inventory : manages
+Manager "1" --> "0..*" Report : generates
+Manager "1" --> "0..*" Operations : oversees
+@enduml

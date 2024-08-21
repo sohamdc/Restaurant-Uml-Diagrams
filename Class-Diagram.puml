@@ -12,6 +12,13 @@ class Customer {
     + makeReservation()
 }
 
+class Restaurant
+{
+    +restId:String
+    +restName:String
+    +resRegistrationDate:String
+}
+
 class Order {
     - orderID: String
     - orderStatus: String
